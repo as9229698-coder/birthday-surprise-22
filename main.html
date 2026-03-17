@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Dumbo ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#0b0613,#1a0820,#0b0613);
+  color:#fff;
+  font-family:'Playfair Display',serif;
+  overflow:hidden;
+}
+
+/* soft glow */
+.bg{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:
+  radial-gradient(circle at 20% 30%,rgba(255,100,150,0.15),transparent),
+  radial-gradient(circle at 80% 70%,rgba(120,120,255,0.1),transparent);
+  filter:blur(80px);
+}
+
+/* container */
+.container{
+  position:relative;
+  text-align:center;
+  max-width:700px;
+  padding:30px;
+}
+
+/* title */
+.title{
+  font-size:2rem;
+  margin-bottom:40px;
+  opacity:0.8;
+}
+
+/* message */
+.message{
+  font-size:1.35rem;
+  line-height:2.2;
+  opacity:0;
+  transform:translateY(15px);
+  transition:all 1.5s ease;
+}
+
+/* show */
+.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* fade out */
+.fade{
+  opacity:0;
+  transform:translateY(-10px);
+}
+
+/* subtle pulse */
+.message span{
+  color:#ff7aa2;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+  <h1 class="title">Aaj poora din sirf tumhare liye ❤️</h1>
+  <div id="msg" class="message"></div>
+</div>
+
+<script>
+
+// 🔥 YOUR FINAL 9 MESSAGES (UNCHANGED, FULL POWER)
+
+const messages = [
+
+`Meri pyari Dumbo ❤️, happy birthday. Aaj jab ye din shuru ho raha hai, main bas itna chahta hoon ki tum apni importance mehsoos karo bina kisi expectation ke. Tum meri zindagi ka koi labelled part nahi ho, par sach ye hai ki tumhari presence mujhe andar se calm kar deti hai. Aaj ka din sirf tumhara hai, aur shayad isi liye mere liye bhi thoda zyada special hai.`,
+
+`Meri sweetheart Atulya, ek baat sach bataun? Tumhari ek chhoti si smile mere liye cheezon ko unfairly easy bana deti hai 😌. Tum aise behave karti ho jaise tumhe idea hi nahi hai tum kitni easily yaad reh jaati ho. Aur haan, ye thoda sa cheating jaisa lagta hai bina effort ke itna effect chhod dena.`,
+
+`Good morning meri pyaari Dumbo ❤️. Subah ka ye waqt bilkul tumhari tarah hai soft, thoda shy aur quietly powerful. Tumhari baaton me jo honesty hai na, wo mujhe hamesha attract karti hai. Tum shor nahi karti, par phir bhi notice ho jaati ho… aur honestly, ye quality kaafi rare hoti hai.`,
+
+`Atulya, ek baat main bilkul clarity ke saath kehna chahta hoon. Meri feelings tumhare liye kisi hormones ke up ya down ka result nahi hain. Ye koi temporary excitement nahi, balki ek stable sa emotion hai jo time ke saath bana hai. Tumhari understanding, tumhara nature, aur tumhara real hona ye sab milke meri feelings ko genuine banate hain ❤️`,
+
+`Meri sweetheart, jab tum apni duniya me busy hoti ho, tab bhi tum mere khayalon ke background me nahi, centre me hoti ho. Tum meri life me zabardasti ghusne ki koshish nahi karti, aur shayad isi liye tum quietly wahan aa jaati ho. Main tumhe lock karne ki baat dramatic tareeke se nahi karta… par haan, agar choice mile, tumhari presence ko main apni life ka permanent comfort banaana zaroor chahunga ❤️.`,
+
+`Meri pyari Dumbo, mujhe tum isliye pasand nahi ho kyunki tum perfect ho, balki isliye kyunki tum real ho thodi confused, thodi strong, aur kaafi zyada adorable 😌. Tumhari chhoti imperfections mujhe tumse door nahi karti, balki aur paas kheench leti hain. Shayad isi liye meri feelings temporary nahi lagti, balki settled si feel hoti hain,`,
+
+`Shaam ka waqt thoda heavy hota hai, par tumhara khayal aate hi cheezein thodi light lagne lagti hain, Atulya. Tumhare saath future imagine karna koi pressure jaisa nahi, balki ek calm possibility jaisa lagta hai. Jaise agar life messy ho jaaye, to tumhare paas baith ke sab thoda manageable lag sakta hai ❤️.`,
+
+`Raat ke time insaan thoda zyada honest ho jaata hai, isliye sach bol raha hoon meri sweetheart tum meri life me ek aisi jagah occupy karti ho jo easily replace nahi hoti. Tum meri aadat nahi ho… par haan, tumhari absence noticeable ho jaati hai 😌. Aur honestly, ye thoda dangerous bhi hai, kyunki main normally itna easily attach nahi hota.`,
+
+`Meri pyari Dumbo Atulya ❤️, aaj ka din khatam ho raha hai, par jo feeling tumhari presence mujhe deti hai, wo kisi ek din tak limited nahi hai. Tum meri life me ho, is baat ke liye main genuinely grateful hoon bina labels, bina pressure. Meri feelings tumhare liye kisi hormones ke up-down ka result nahi hain; ye real hain, calm hain, aur time ke saath aur clear hoti ja rahi hain.
+Happy Birthday meri sweetheart. Agar zindagi mujhe choose karne ka mauka de… main har baar tumhari presence choose karunga ❤️.`
+];
+
+let current = -1;
+
+// 🔥 TIME LOGIC (STRICT 3 HOURS)
+function getIndex(){
+  const now = new Date();
+  const hour = now.getHours();
+  return Math.floor(hour/3);
+}
+
+// 🔥 UPDATE ENGINE
+function update(){
+  const index = getIndex();
+  const el = document.getElementById("msg");
+
+  if(index !== current){
+
+    el.classList.remove("show");
+    el.classList.add("fade");
+
+    setTimeout(()=>{
+      el.innerHTML = messages[index] || "";
+      el.classList.remove("fade");
+      el.classList.add("show");
+    },900);
+
+    current = index;
+  }
+}
+
+// INIT
+update();
+setInterval(update,30000);
+
+</script>
+
+</body>
+</html>
