@@ -22,7 +22,7 @@ body {
   color:#fff;
 }
 
-/* soft glow background */
+/* glow bg */
 .bg{
   position:absolute;
   width:100%;
@@ -43,7 +43,7 @@ body {
   animation:fadeIn 2s ease forwards;
 }
 
-/* heart icon */
+/* heart */
 .heart-icon {
   font-size:3rem;
   color:#ff4d88;
@@ -117,14 +117,15 @@ body {
 function enter(){
   const box = document.querySelector('.container');
 
-  // fade out effect
+  // smooth exit
   box.style.transition = "all 0.6s ease";
   box.style.opacity = "0";
   box.style.transform = "translateY(-20px)";
 
-  // redirect
   setTimeout(()=>{
-   window.location.href = "/birthday-surprise-22/main.html";
+    // 🔥 DYNAMIC SAFE PATH (FINAL FIX)
+    const base = window.location.origin + window.location.pathname.replace("index.html","");
+    window.location.href = base + "main.html";
   },600);
 }
 
