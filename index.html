@@ -64,6 +64,8 @@ body {
   border-radius:30px;
   cursor:pointer;
   transition:0.3s;
+  text-decoration:none;
+  display:inline-block;
 }
 
 .enter-btn:hover {
@@ -100,20 +102,12 @@ body {
     aaj poora din tumhe feel karwane ke liye hai.
   </div>
 
-  <!-- 🔥 CHANGE: anchor instead of JS -->
-  <a id="enterLink" class="enter-btn">Enter Your Day ✨</a>
+  <!-- ✅ FINAL FIX -->
+  <a href="/birthday-surprise-22/main.html" class="enter-btn">
+    Enter Your Day ✨
+  </a>
 
 </div>
-
-<script>
-
-// 🔥 ULTIMATE FIX — NO REDIRECT BUG POSSIBLE
-const base = window.location.origin + window.location.pathname.replace(/\/$/, "");
-const repo = base.substring(0, base.lastIndexOf("/"));
-
-document.getElementById("enterLink").href = repo + "/main.html";
-
-</script>
 
 </body>
 </html>
