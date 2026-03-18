@@ -110,17 +110,30 @@ const messages = [
 `Meri pyari Dumbo Atulya ❤️, aaj ka din khatam ho raha hai, par jo feeling tumhari presence mujhe deti hai, wo kisi ek din tak limited nahi hai. Tum meri life me ho, is baat ke liye main genuinely grateful hoon bina labels, bina pressure. Meri feelings tumhare liye kisi hormones ke up-down ka result nahi hain; ye real hain, calm hain, aur time ke saath aur clear hoti ja rahi hain.
 Happy Birthday meri sweetheart. Agar zindagi mujhe choose karne ka mauka de… main har baar tumhari presence choose karunga ❤️.`
 ];
+const messages = [ /* SAME ARRAY AS YOURS */ ];
 
 let current = -1;
 
-// 🔥 TIME LOGIC (STRICT 3 HOURS)
+// 🔥 CUSTOM TIME ENGINE (ADVANCED)
 function getIndex(){
   const now = new Date();
   const hour = now.getHours();
-  return Math.floor(hour/3);
+  const min = now.getMinutes();
+
+  // 🔴 FINAL MESSAGE (ONLY LAST 2 MINUTES)
+  if(hour === 23 && min >= 58){
+    return 8; // last message index
+  }
+
+  // 🟣 9PM–11:58PM → SECOND LAST MESSAGE
+  if(hour >= 21){
+    return 7;
+  }
+
+  // 🟢 NORMAL FLOW
+  return Math.floor(hour / 3);
 }
 
-// 🔥 UPDATE ENGINE
 function update(){
   const index = getIndex();
   const el = document.getElementById("msg");
@@ -143,8 +156,3 @@ function update(){
 // INIT
 update();
 setInterval(update,30000);
-
-</script>
-
-</body>
-</html>
