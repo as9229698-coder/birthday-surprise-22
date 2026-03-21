@@ -110,13 +110,10 @@ const messages = [
 `Meri pyari Dumbo Atulya ❤️, aaj ka din khatam ho raha hai, par jo feeling tumhari presence mujhe deti hai, wo kisi ek din tak limited nahi hai. Tum meri life me ho, is baat ke liye main genuinely grateful hoon bina labels, bina pressure. Meri feelings tumhare liye kisi hormones ke up-down ka result nahi hain; ye real hain, calm hain, aur time ke saath aur clear hoti ja rahi hain.
 Happy Birthday meri sweetheart. Agar zindagi mujhe choose karne ka mauka de… main har baar tumhari presence choose karunga ❤️.`
 ];
-<script>
-
-const messages = [ /* YOUR SAME 9 MESSAGES */ ];
 
 let current = -1;
 
-// 🔥 DAY LOCK SYSTEM
+// 🔥 DAY LOCK
 const today = new Date().toDateString();
 
 function getIndex(){
@@ -124,27 +121,25 @@ function getIndex(){
   const hour = now.getHours();
   const min = now.getMinutes();
 
-  // 🔴 FINAL MESSAGE (23:58–23:59)
+  // FINAL MESSAGE
   if(hour === 23 && min >= 58){
     return 8;
   }
 
-  // 🟣 9PM–11:58PM
+  // 9PM–11:58PM
   if(hour >= 21){
     return 7;
   }
 
-  // 🟢 NORMAL FLOW
   return Math.floor(hour / 3);
 }
 
 function update(){
   const el = document.getElementById("msg");
 
-  // 🔥 CHECK DAY CHANGE
   const nowDay = new Date().toDateString();
 
-  // Agar next day ho gaya → freeze last message
+  // 🔒 freeze after day ends
   if(nowDay !== today){
     el.innerHTML = messages[8];
     el.classList.add("show");
